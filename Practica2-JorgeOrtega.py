@@ -123,13 +123,6 @@ SalarioConDescuentosRango2 = (Salario - DescuentoTotalRango2)
 SalarioConDescuentosRango3 = (Salario - DescuentoTotalRango3)
 SalarioConDescuentosRango4 = (Salario - DescuentoTotalRango4)
 
-# print(Salario)
-# print(DescuentoArs)
-# print(DescuentoAfp)
-# print(DescuentoTotal)
-# print(SalarioConDescuentos)
-# print(SalarioAnual)
-
 if (SalarioAnual <= 416220.00):
     print("")
     print("Su salario bruto es:", Salario)
@@ -177,3 +170,43 @@ elif (SalarioAnual >= 867123.01):
 # acuerdo al monto. Por ejemplo, si el usuario solicita 3,900 y hay disponibilidad en
 # todos los billetes, el cajero debe dispensar 3 billetes de mil, 1 de quinientos y 4 de
 # cien.
+
+Saldo = 100000
+while True:
+    print()
+    print(".:Bienvenido a su cajero automatico:.")
+    print()
+    print("1. Ingresar dinero en su cuenta de ahorro: ")
+    print("2. Retirar dinero de su cuenta de ahorro: ")
+    print("3. Consulta de balance")
+    print("4. Finalizar")
+    print()
+    Opcion = int(input("Por favor ingrese una opcion: "))
+    print()
+
+    if Opcion == 1:
+        Ingreso = float(input("Por favor digite al monto a ingresar: "))
+        Saldo += Ingreso
+        print()
+        print(f"Usted ha ingresado {Ingreso} pesos")
+        print(f"Su nuevo balance es: {Saldo}")
+    elif Opcion == 2:
+        Retiro = float(input("Por favor digite al monto que desea retirar: "))
+        if Retiro > Saldo:
+            print()
+            print(
+                f"El monto a retirar de {Retiro}, es mayor que su balance de {Saldo}")
+        else:
+            Saldo -= Retiro
+            print()
+            print(f"Usted ha retirado {Retiro} pesos")
+            print(f"Su nuevo balance es: {Saldo}")
+    elif Opcion == 3:
+        print(f"Su balance actual es de: {Saldo}")
+    elif Opcion == 4:
+        print("Gracias por utilizar nuestros servicios!")
+        print()
+        break
+    else:
+        print("Error, por favor elija una opcion del 1 al 4")
+        print()

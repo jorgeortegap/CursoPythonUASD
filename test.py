@@ -1,86 +1,58 @@
-# 4- Realizar un programa que reciba por teclado el sueldo de un empleado y le
-# aplique los cálculos de ISR (ver tabla DGII), ARS, y AFP (investigar porcentajes)
+# 5-Cree una aplicación de cajero automático para el banco ABC. El cajero tendrá un
+# límite de billetes descrito a continuación: 9 de 1000, 19 de 500, 99 de 100
+# El cajero debe solicitar Banco y monto a retirar. Si el banco es ABC el limite de
+# retiro son 10,000 y 2000 pesos por transacción en caso contrario.
+# El cajero debe informar si el monto solicitado no puede ser dispensado o si
+# excede el límite de transacción. Y debe hacer la distribución de los billetes de
+# acuerdo al monto. Por ejemplo, si el usuario solicita 3,900 y hay disponibilidad en
+# todos los billetes, el cajero debe dispensar 3 billetes de mil, 1 de quinientos y 4 de
+# cien.
 
-# Calculo de Descuestos
-# ARS = 3.04% del salario bruto
-# AFP = 2.87% del salario bruto
 
-# Impuestos sobre la Renta (ISR)
-# Escala anual	                    Tasa
-# Hasta RD$416.220,00	            Exento
-# RD$416.220,01 a RD$624.329,00	    15% del excedente de RD$416.220,01
-# RD$624.329,01 a RD$867.123,00	    RD$31.216,00 más 20% del excedente de RD$624.329,01
-# De RD$867.123,01 en adelante	    RD$79.776 más el 25% del excedente de RD$867.123,01
+# -*- coding: utf-8 -*-
+import random
+usuario = "Admin"
+passw = "1234"
+saldo = random.randint(0, 1000000)
+saldo2 = random.randint(0, 50000)
+cont = 0
+conectado = bool
+while cont < 3:
+    us = input("Ingrese usuario: ")
+    co = input("Ingrese contrasena: ")
+    if us == usuario and passw == co:
+        print("Bienvenido al sistema")
+        conectado = True
+        break
+    else:
+        cont = cont+1
+        print("Usuario y contraseña incorreta")
+        conectado = False
 
-# Fuente: https://www.toptrabajos.com/blog/do/descuentos-de-nomina-sfs-afp-isr/
-
-Ars = 0.0304
-Afp = 0.0287
-print("")
-Salario = float(
-    input("Por favor introduzca el salario para calcular ARS, AFP e ISR: "))
-DescuentoArs = (Salario*Ars)
-DescuentoAfp = (Salario*Afp)
-DescuentoTotal = (DescuentoArs+DescuentoAfp)
-SalarioConDescuentos = (Salario-DescuentoTotal)
-SalarioAnual = (SalarioConDescuentos*12)
-# Rango1 = "No Aplica"
-ISR_Rango2 = 416220.01
-ISR_Rango3 = 624329.01
-ISR_Rango4 = 867123.01
-ISR_ExcendenteAnualRango2 = ((SalarioAnual - ISR_Rango2)*0.15)
-ISR_ExcendenteAnualRango3 = (((SalarioAnual - ISR_Rango3)*0.20)+31216)
-ISR_ExcendenteAnualRango4 = (((SalarioAnual - ISR_Rango4)*0.25)+79776)
-ISR_ExcendenteMensual2 = (ISR_ExcendenteAnualRango2/12)
-ISR_ExcendenteMensual3 = (ISR_ExcendenteAnualRango3/12)
-ISR_ExcendenteMensual4 = (ISR_ExcendenteAnualRango4/12)
-DescuentoTotalRango2 = (DescuentoTotal+ISR_ExcendenteMensual2)
-DescuentoTotalRango3 = (DescuentoTotal+ISR_ExcendenteMensual3)
-DescuentoTotalRango4 = (DescuentoTotal+ISR_ExcendenteMensual4)
-SalarioConDescuentosRango2 = (Salario - DescuentoTotalRango2)
-SalarioConDescuentosRango3 = (Salario - DescuentoTotalRango3)
-SalarioConDescuentosRango4 = (Salario - DescuentoTotalRango4)
-
-# print(Salario)
-# print(DescuentoArs)
-# print(DescuentoAfp)
-# print(DescuentoTotal)
-# print(SalarioConDescuentos)
-# print(SalarioAnual)
-
-if (SalarioAnual <= 416220.00):
-    print("")
-    print("Su salario bruto es:", Salario)
-    print("Descuento de ARS:", DescuentoArs)
-    print("Descuento de AFP:", DescuentoAfp)
-    print("Descuento de ISR: Su sueldo esta exento de ISR")
-    print("Total de descuentos:", DescuentoTotal)
-    print("Su sueldo neto despues de descuentos es:", SalarioConDescuentos)
-    print("")
-elif (SalarioAnual >= 416220.01 and SalarioAnual <= 624329.00):
-    print("")
-    print("Su salario bruto es:", Salario)
-    print("Descuento de ARS:", DescuentoArs)
-    print("Descuento de AFP:", DescuentoAfp)
-    print("Descuento de ISR:", ISR_ExcendenteMensual2)
-    print("Total de descuentos:", DescuentoTotalRango2)
-    print("Su sueldo neto despues de descuentos es:", SalarioConDescuentosRango2)
-    print("")
-elif (SalarioAnual >= 624329.01 and SalarioAnual <= 867123.00):
-    print("")
-    print("Su salario bruto es:", Salario)
-    print("Descuento de ARS:", DescuentoArs)
-    print("Descuento de AFP:", DescuentoAfp)
-    print("Descuento de ISR:", ISR_ExcendenteMensual3)
-    print("Total de descuentos:", DescuentoTotalRango3)
-    print("Su sueldo neto despues de descuentos es:", SalarioConDescuentosRango3)
-    print("")
-elif (SalarioAnual >= 867123.01):
-    print("")
-    print("Su salario bruto es:", Salario)
-    print("Descuento de ARS:", DescuentoArs)
-    print("Descuento de AFP:", DescuentoAfp)
-    print("Descuento de ISR:", ISR_ExcendenteMensual4)
-    print("Total de descuentos:", DescuentoTotalRango4)
-    print("Su sueldo neto despues de descuentos es:", SalarioConDescuentosRango4)
-    print("")
+while conectado == True:
+    print("Que operacion desea utilizar?:")
+    print("1.- Giro")
+    print("2.- Deposito")
+    print("3.- Traspaso")
+    print("4.- Consulta Saldo")
+    print("0.- Para cerrar")
+    choi = int(input("Ingrese opcion:"))
+    if choi == 1:
+        monto = int(input("Ingrese monto a girar:"))
+        saldo = saldo-monto
+        print("ha retirado ", monto)
+    elif choi == 2:
+        monto = int(input("Ingrese monto a Depositar:"))
+        saldo = saldo+monto
+        print("su nuevo saldo es", saldo)
+    elif choi == 3:
+        cu2 = input("Ingrese cuenta a depositar")
+        monto = int(input("Ingrese monto a Transferir:"))
+        saldo = saldo-monto
+        saldo2 = saldo2+monto
+        print("se han transferido", monto, "pesos a la cuenta", cu2)
+        print("el nuevo saldo es:", saldo2)
+    elif choi == 4:
+        print("Su saldo es:", saldo)
+    elif choi == 0:
+        break
