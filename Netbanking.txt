@@ -1,0 +1,7 @@
+Netbanking
+Login de usuarios, con opcion de logeo o crear  cuentas
+Cuentas
+ - Balances
+ - Depositos
+ - Retiros
+ - Crear usuarios ficticios con monton 
